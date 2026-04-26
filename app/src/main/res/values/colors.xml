@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_lembaga">#1A237E</color>
+    <color name="primary_dark">#000051</color>
+    <color name="secondary_lembaga">#283593</color>
+    <color name="accent_lembaga">#FFC107</color>
+    <color name="bg_light">#F8F9FA</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="text_dark">#212121</color>
+    <color name="text_muted">#757575</color>
+</resources>

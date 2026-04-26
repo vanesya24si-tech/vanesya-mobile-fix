@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Nesa Drunk</string>
+    <string name="lembaga_name">Lembaga Desa Rumbai</string>
+    <string name="portal_subtitle">Portal Pelayanan Publik</string>
+    <string name="perangkat_lembaga">Perangkat Lembaga</string>
+    <string name="perangkat_desc">Akses data perangkat desa dengan mudah</string>
+    <string name="buka_website">Buka Website</string>
+    <string name="informasi_terkini">Informasi Terkini</string>
+    <string name="error_open_link">Tidak dapat membuka link</string>
+    <string name="feature_coming_soon">Fitur segera hadir</string>
+
+    <string name="layanan_utama">Layanan Utama</string>
+    <string name="wilayah">Wilayah</string>
+    <string name="kegiatan">Kegiatan</string>
+    <string name="galeri">Galeri</string>
+    <string name="kontak">Kontak</string>
+    <string name="cari_layanan">Cari layanan atau informasi...</string>
+    <string name="halo_selamat_datang">Halo, Selamat Datang!</string>
+    <string name="statistik_penduduk">Statistik Penduduk</string>
+    <string name="akses_website">AKSES WEBSITE</string>
+    <string name="sim_perangkat">Sistem Informasi Manajemen Perangkat</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nesa Drunk</string>
+    <string name="lembaga_name">Lembaga Desa Rumbai</string>
+    <string name="portal_subtitle">Portal Pelayanan Publik</string>
+    <string name="perangkat_lembaga">Perangkat Lembaga</string>
+    <string name="perangkat_desc">Akses data perangkat desa dengan mudah</string>
+    <string name="buka_website">Buka Website</string>
+    <string name="informasi_terkini">Informasi Terkini</string>
+    <string name="error_open_link">Tidak dapat membuka link</string>
+    <string name="feature_coming_soon">Fitur segera hadir</string>
+</resources>
