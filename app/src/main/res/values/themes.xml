@@ -16,7 +16,7 @@
 
         <item name="android:windowBackground">@color/bg_light</item>
 
-        <!-- Fix for Tex
+        <!-- Fix for Text -->
         <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
     </style>
 
