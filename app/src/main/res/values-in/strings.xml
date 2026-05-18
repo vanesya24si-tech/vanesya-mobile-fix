@@ -9,4 +9,45 @@
     <string name="informasi_terkini">Informasi Terkini</string>
     <string name="error_open_link">Tidak dapat membuka link</string>
     <string name="feature_coming_soon">Fitur segera hadir</string>
+
+    <!-- Strings for Pertemuan 9 (Bina Desa) -->
+    <string name="title_bina_desa">Bina Desa - Perangkat</string>
+    <string name="hint_nama_perangkat">Nama Perangkat</string>
+    <string name="btn_cari_data">Cari Data</string>
+    <string name="chip_semua">Semua</string>
+    <string name="chip_sekretariat">Sekretariat</string>
+    <string name="chip_kasi_kaur">Kasi/Kaur</string>
+    <string name="chip_staf">Staf Ahli</string>
+    <string name="hint_search_official">Cari jabatan…</string>
+
+    <string name="label_kades">Kepala Desa</string>
+    <string name="label_sekdes">Sekretaris</string>
+    <string name="label_bendahara">Bendahara</string>
+    <string name="label_kaur_umum">Kaur Umum</string>
+    <string name="label_kasi_pem">Kasi Pem.</string>
+    <string name="label_kasi_kesra">Kasi Kesra</string>
+
+    <string name="section_quick_access">Akses Cepat Jabatan</string>
+    <string name="section_info_tambahan">Informasi &#38; Layanan</string>
+    <string name="section_developer">Profil Pengembang</string>
+
+    <!-- ListView Items for Bina Desa -->
+    <string name="item_privacy">Kebijakan Privasi Lembaga</string>
+    <string name="item_about">Tentang Bina Desa</string>
+    <string name="item_manual">Panduan Pengguna</string>
+    <string name="item_contact">Hubungi Pengelola</string>
+
+    <!-- Info & Pesan Header -->
+    <string name="header_info_title">Informasi &#38; Pesan Terbaru</string>
+    <string name="header_info_subtitle">Update terkini dari Lembaga Desa</string>
+
+    <!-- Developer Info -->
+    <string name="dev_name">Vanesya</string>
+    <string name="dev_role">Android Developer - Bina Desa Project</string>
+    <string name="dev_desc">Mahasiswa Teknik Informatika yang berdedikasi untuk menciptakan solusi digital guna membantu digitalisasi pelayanan publik di tingkat desa. Saya fokus pada pengembangan antarmuka yang intuitif dan fungsional.</string>
+    <string name="dev_contact">Hubungi Saya</string>
+    <string name="label_about_me">Tentang Saya</string>
+    <string name="dev_skill_kotlin">Spesialis Kotlin</string>
+    <string name="dev_skill_ui">Desain UI/UX</string>
+    <string name="dev_footer">Dibuat dengan ❤️ oleh Vanesya</string>
 </resources>

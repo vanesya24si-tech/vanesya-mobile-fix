@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nesa_drunk.databinding.FragmentHomeBinding
+import com.example.nesa_drunk.ui.pertemuan_9.NinthActivity
 
 class HomeFragment : Fragment() {
 
@@ -25,6 +26,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnPertemuan9.setOnClickListener {
+            val intent = Intent(requireContext(), NinthActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.btnOpenLink.setOnClickListener {
             val url = "https://nesya-perangkatlembaga-g.alwaysdata.net"

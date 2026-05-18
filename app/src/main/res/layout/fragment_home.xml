@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     android:background="@color/bg_light">
 
+    <View
+        android:id="@+id/background_header"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_header_wave" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         app:elevation="0dp">
 
         <LinearLayout
@@ -25,7 +31,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Menu"
                 android:src="@android:drawable/ic_menu_sort_by_size"
-                app:tint="@color/primary_lembaga" />
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="0dp"
@@ -33,7 +39,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
                 android:text="Nesa Drunk"
-                android:textColor="@color/primary_lembaga"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -76,14 +82,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Halo, Selamat Datang!"
-                        android:textColor="@color/text_muted"
+                        android:textColor="@color/white"
                         android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lembaga Rumbai"
-                        android:textColor="@color/primary_lembaga"
+                        android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -94,7 +100,7 @@
                     android:layout_height="40dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@android:drawable/ic_popup_reminder"
-                    app:tint="@color/text_muted" />
+                    app:tint="@color/white" />
             </LinearLayout>
 
             <!-- Search Bar Mockup -->
@@ -138,6 +144,18 @@
                         app:tint="@color/primary_lembaga" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <!-- Pertemuan 9 Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPertemuan9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pertemuan 9"
+                android:layout_marginBottom="16dp"
+                app:cornerRadius="12dp"
+                app:icon="@android:drawable/ic_menu_today"
+                android:backgroundTint="@color/accent_lembaga"
+                android:textColor="@color/primary_dark"/>
 
             <!-- Menu Utama Grid -->
             <TextView
@@ -329,7 +347,7 @@
                         android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sen" android:gravity="center" android:textSize="10sp"/>
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sel" android:gravity="center" android:textSize="10sp"/>
-                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Rab" android:gravity="center" android:textSize="10sp"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:text="Rab" android:gravity="center" android:textSize="10sp" android:layout_weight="1"/>
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Kam" android:gravity="center" android:textSize="10sp"/>
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Jum" android:gravity="center" android:textSize="10sp"/>
                     </LinearLayout>
