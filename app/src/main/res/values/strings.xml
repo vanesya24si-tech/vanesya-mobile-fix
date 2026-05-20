@@ -52,6 +52,11 @@
     <string name="header_info_title">Informasi &amp; Pesan Terbaru</string>
     <string name="header_info_subtitle">Update terkini dari Lembaga Desa</string>
 
+    <!-- Tabs for Info & Pesan -->
+    <string name="tab_all">Semua</string>
+    <string name="tab_announcement">Pengumuman</string>
+    <string name="tab_message">Pesan</string>
+
     <!-- Developer Info -->
     <string name="dev_name">Vanesya</string>
     <string name="dev_role">Android Developer - Bina Desa Project</string>

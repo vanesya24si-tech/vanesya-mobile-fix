@@ -4,24 +4,26 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nesa_drunk.databinding.ItemMessageBinding
 import com.google.android.material.snackbar.Snackbar
 
 class MessageAdapter(
-    context: Context,
-    private val messages: List<MessageModel>
-) : ArrayAdapter<MessageModel>(context, 0, messages) {
+    private val context: Context,
+    private var messages: List<MessageModel>
+) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding: ItemMessageBinding = if (convertView == null) {
-            ItemMessageBinding.inflate(LayoutInflater.from(context), parent, false)
-        } else {
-            ItemMessageBinding.bind(convertView)
-        }
+    class MessageViewHolder(val binding: ItemMessageBinding) : RecyclerView.ViewHolder(binding.root)
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+        val binding = ItemMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MessageViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val data = messages[position]
+        val binding = holder.binding
 
         // Load Avatar
         Glide.with(context)
@@ -48,12 +50,17 @@ class MessageAdapter(
 
         binding.root.setOnClickListener {
             Snackbar.make(
-                parent,
+                it,
                 "Pesan dari ${data.senderName}",
                 Snackbar.LENGTH_SHORT
             ).show()
         }
+    }
 
-        return binding.root
+    override fun getItemCount(): Int = messages.size
+
+    fun updateData(newMessages: List<MessageModel>) {
+        this.messages = newMessages
+        notifyDataSetChanged()
     }
 }

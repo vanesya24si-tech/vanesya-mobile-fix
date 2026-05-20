@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    android:layout_margin="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/avatarImg"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:contentDescription="Avatar"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,12 +28,15 @@
             android:id="@+id/textSender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="Nama Pengirim"
             android:textColor="@color/text_dark"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/textDate"
+            android:lineSpacingExtra="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/avatarImg"
             app:layout_constraintTop_toTopOf="@+id/avatarImg" />
 
@@ -41,33 +44,37 @@
             android:id="@+id/textDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="12:00"
             android:textColor="@color/text_muted"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textSender" />
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/textSender"
+            app:layout_constraintTop_toBottomOf="@+id/textSender" />
 
         <TextView
             android:id="@+id/textMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="4"
             android:text="Isi pesan atau informasi dari lembaga desa..."
             android:textColor="@color/text_dark"
-            android:textSize="14sp"
+            android:textSize="12sp"
+            android:lineSpacingExtra="1dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textSender"
-            app:layout_constraintTop_toBottomOf="@+id/textSender" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
-        <!-- Content Image for the Message/Info -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/contentImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/textMessage"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:shapeAppearanceOverlay="@style/RoundedImage"
             tools:visibility="visible" />
 
