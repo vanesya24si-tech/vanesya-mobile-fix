@@ -4,6 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.nesa_drunk.databinding.ActivityMainBinding
+import com.example.nesa_drunk.ui.home.HomeFragment
+import com.example.nesa_drunk.ui.home.InfoFragment
+import com.example.nesa_drunk.ui.news.NewsFragment
+import com.example.nesa_drunk.ui.agenda.AgendaFragment
+import com.example.nesa_drunk.ui.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +30,16 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(HomeFragment())
                     true
                 }
-                R.id.nav_about -> {
+                R.id.nav_info -> {
                     replaceFragment(InfoFragment())
+                    true
+                }
+                R.id.nav_news -> {
+                    replaceFragment(NewsFragment())
+                    true
+                }
+                R.id.nav_agenda -> {
+                    replaceFragment(AgendaFragment())
                     true
                 }
                 R.id.nav_profile -> {
@@ -41,7 +54,6 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        // Use custom animations for fragment transitions
         fragmentTransaction.setCustomAnimations(
             android.R.anim.fade_in,
             android.R.anim.fade_out,

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="@color/bg_light">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivDetailFoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_desa"
+        app:shapeAppearanceOverlay="@style/CircleImage"
+        app:strokeColor="@color/primary_lembaga"
+        app:strokeWidth="2.5dp" />
+
+    <TextView
+        android:id="@+id/tvDetailNama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Lengkap"
+        android:textColor="@color/text_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tvDetailJabatan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kepala Desa"
+        android:textColor="@color/primary_lembaga"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="4dp"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"
+        android:layout_marginVertical="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Bidang:"
+            android:textColor="@color/text_muted"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tvDetailBidang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pemerintahan"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="No. Telepon:"
+            android:textColor="@color/text_muted"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tvDetailTelepon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08123456789"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDetailHubungi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hubungi via WhatsApp"
+        android:textColor="@color/white"
+        android:backgroundTint="#25D366"
+        app:cornerRadius="8dp"
+        app:icon="@android:drawable/stat_sys_phone_call" />
+
+</LinearLayout>

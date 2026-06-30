@@ -1,4 +1,4 @@
-package com.example.nesa_drunk
+package com.example.nesa_drunk.ui.auth
 
 import android.os.Bundle
 import android.widget.Toast

@@ -92,18 +92,32 @@
                     android:checked="true" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipPendidikan"
+                    android:id="@+id/chipPemerintahan"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pendidikan" />
+                    android:text="Pemerintahan" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipKesehatan"
+                    android:id="@+id/chipPelayanan"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kesehatan" />
+                    android:text="Pelayanan" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipKesejahteraan"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kesejahteraan" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipKeuangan"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Keuangan &amp; Umum" />
             </com.google.android.material.chip.ChipGroup>
 
             <!-- Developer Section -->

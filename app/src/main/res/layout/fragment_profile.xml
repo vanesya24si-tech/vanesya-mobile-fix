@@ -133,12 +133,99 @@
 
             <!-- Contact Button -->
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnContactDev"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/dev_contact"
                 app:cornerRadius="12dp"
                 app:icon="@android:drawable/ic_menu_send" />
+
+            <!-- Tabel Implementasi Materi -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📋 Implementasi Materi"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp"/>
+
+                    <!-- Row: ListView + Adapter -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="8dp" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:text="1. ListView + Custom Adapter" android:textColor="@color/text_dark" android:textSize="12sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_active" android:paddingHorizontal="8dp" android:paddingVertical="4dp"
+                            android:text="✓ Selesai" android:textColor="@color/white" android:textSize="11sp"/>
+                    </LinearLayout>
+
+                    <!-- Row: TabLayout + RecyclerView -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="8dp" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:text="2. TabLayout + RecyclerView" android:textColor="@color/text_dark" android:textSize="12sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_active" android:paddingHorizontal="8dp" android:paddingVertical="4dp"
+                            android:text="✓ Selesai" android:textColor="@color/white" android:textSize="11sp"/>
+                    </LinearLayout>
+
+                    <!-- Row: ViewPager2 Onboarding -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="8dp" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:text="3. ViewPager2 Onboarding" android:textColor="@color/text_dark" android:textSize="12sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_active" android:paddingHorizontal="8dp" android:paddingVertical="4dp"
+                            android:text="✓ Selesai" android:textColor="@color/white" android:textSize="11sp"/>
+                    </LinearLayout>
+
+                    <!-- Row: REST API -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="8dp" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:text="4. REST API (Retrofit)" android:textColor="@color/text_dark" android:textSize="12sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_active" android:paddingHorizontal="8dp" android:paddingVertical="4dp"
+                            android:text="✓ Selesai" android:textColor="@color/white" android:textSize="11sp"/>
+                    </LinearLayout>
+
+                    <!-- Row: Room Database -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="8dp" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:text="5. Room Database" android:textColor="@color/text_dark" android:textSize="12sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_active" android:paddingHorizontal="8dp" android:paddingVertical="4dp"
+                            android:text="✓ Selesai" android:textColor="@color/white" android:textSize="11sp"/>
+                    </LinearLayout>
+
+                    <!-- Row: Notification -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:text="6. Notification / Reminder" android:textColor="@color/text_dark" android:textSize="12sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_active" android:paddingHorizontal="8dp" android:paddingVertical="4dp"
+                            android:text="✓ Selesai" android:textColor="@color/white" android:textSize="11sp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="wrap_content"

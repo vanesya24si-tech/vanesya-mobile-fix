@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Left border accent (Deep Blue) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1A237E" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    <!-- White card background shifted to the right to reveal the left border -->
+    <item android:left="6dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners
+                android:topRightRadius="12dp"
+                android:bottomRightRadius="12dp"
+                android:topLeftRadius="0dp"
+                android:bottomLeftRadius="0dp" />
+        </shape>
+    </item>
+</layer-list>

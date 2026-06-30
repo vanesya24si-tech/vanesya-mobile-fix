@@ -2,14 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@drawable/logo_desa"
         android:title="Home" />
     <item
-        android:id="@+id/nav_about"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:title="About" />
+        android:id="@+id/nav_info"
+        android:icon="@drawable/ic_lembaga"
+        android:title="Info Desa" />
+    <item
+        android:id="@+id/nav_news"
+        android:icon="@drawable/ic_berita"
+        android:title="Berita" />
+    <item
+        android:id="@+id/nav_agenda"
+        android:icon="@drawable/ic_agenda"
+        android:title="Agenda" />
     <item
         android:id="@+id/nav_profile"
         android:icon="@android:drawable/ic_menu_myplaces"
-        android:title="Developer" />
-</menu>
+        android:title="Profil" />
+</menu>

@@ -66,4 +66,20 @@
     <string name="dev_skill_kotlin">Kotlin Specialist</string>
     <string name="dev_skill_ui">UI/UX Design</string>
     <string name="dev_footer">Dibuat dengan ❤️ oleh Vanesya</string>
+    <!-- Notification strings -->
+    <string name="notification_channel_name">Agenda Desa</string>
+    <string name="notification_channel_desc">Notifikasi pengingat agenda kegiatan desa</string>
+    <string name="reminder_set">Pengingat berhasil diatur!</string>
+
+    <!-- Fragment labels -->
+    <string name="label_berita">Berita &amp; Informasi</string>
+    <string name="label_agenda">Agenda &amp; Catatan</string>
+    <string name="label_profil">Profil Developer</string>
+
+    <!-- Berita categories -->
+    <string name="cat_pemerintahan">Pemerintahan</string>
+    <string name="cat_pendidikan">Pendidikan</string>
+    <string name="cat_kesehatan">Kesehatan</string>
+    <string name="cat_umkm">UMKM</string>
+    <string name="cat_pertanian">Pertanian</string>
 </resources>

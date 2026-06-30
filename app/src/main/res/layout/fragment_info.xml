@@ -16,7 +16,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="200dp"
             app:contentScrim="@color/primary_lembaga"
             app:expandedTitleMarginBottom="28dp"
             app:expandedTitleMarginStart="20dp"
@@ -61,17 +61,22 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_all" />
+                android:text="Perangkat" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_announcement" />
+                android:text="Lembaga" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_message" />
+                android:text="Agenda" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pengumuman" />
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -82,8 +87,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="90dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_message" />
+
+    <!-- FAB Tambah -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabTambah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:text="Tambah"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_add"
+        app:backgroundTint="@color/accent_gold"
+        app:tint="@color/primary_dark"
+        android:textColor="@color/primary_dark" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

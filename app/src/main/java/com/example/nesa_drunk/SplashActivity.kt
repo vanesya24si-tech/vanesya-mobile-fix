@@ -8,6 +8,8 @@ import android.os.Looper
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nesa_drunk.databinding.ActivitySplashBinding
+import com.example.nesa_drunk.ui.onboarding.OnboardingActivity
+import com.example.nesa_drunk.ui.auth.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
     
@@ -29,9 +31,12 @@ class SplashActivity : AppCompatActivity() {
 
     private fun checkLoginStatus() {
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        val isFirstLaunch = sharedPref.getBoolean("is_first_launch", true)
         val isLoggedIn = sharedPref.getBoolean("is_logged_in", false)
 
-        if (isLoggedIn) {
+        if (isFirstLaunch) {
+            startActivity(Intent(this, OnboardingActivity::class.java))
+        } else if (isLoggedIn) {
             // Jika sudah login, ke Main (Home)
             startActivity(Intent(this, MainActivity::class.java))
         } else {

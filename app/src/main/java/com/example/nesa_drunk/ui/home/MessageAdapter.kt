@@ -1,4 +1,4 @@
-package com.example.nesa_drunk
+package com.example.nesa_drunk.ui.home
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,10 +1,11 @@
-package com.example.nesa_drunk
+package com.example.nesa_drunk.ui.auth
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.nesa_drunk.MainActivity
 import com.example.nesa_drunk.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -21,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                // Simpan status login ke SharedPreferences
                 val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                 with(sharedPref.edit()) {
                     putBoolean("is_logged_in", true)

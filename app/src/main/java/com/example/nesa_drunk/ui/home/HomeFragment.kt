@@ -1,11 +1,15 @@
 package com.example.nesa_drunk.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nesa_drunk.databinding.FragmentHomeBinding
+import com.example.nesa_drunk.ui.pertemuan_9.NinthActivity
 
 class HomeFragment : Fragment() {
 
@@ -13,8 +17,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -23,9 +26,24 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        binding.searchBar.setOnClickListener {
-            // Handle search click
+
+        binding.btnPertemuan9.setOnClickListener {
+            val intent = Intent(requireContext(), NinthActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnOpenLink.setOnClickListener {
+            val url = "https://nesya-perangkatlembaga-g.alwaysdata.net"
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Tidak dapat membuka link", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.cardLayanan.setOnClickListener {
+            Toast.makeText(requireContext(), "Fitur Layanan segera hadir", Toast.LENGTH_SHORT).show()
         }
     }
 
