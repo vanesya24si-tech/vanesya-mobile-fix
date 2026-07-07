@@ -63,6 +63,20 @@ dependencies {
     // WorkManager
     implementation(libs.androidx.work.runtime)
 
+    // Splash Screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+    // CameraX
+    implementation("androidx.camera:camera-camera2:1.3.3")
+    implementation("androidx.camera:camera-lifecycle:1.3.3")
+    implementation("androidx.camera:camera-view:1.3.3")
+    
+    // ML Kit untuk QR code
+    implementation("com.google.mlkit:barcode-scanning:17.2.0")
+
+    // ZXing for QR generation
+    implementation("com.google.zxing:core:3.5.2")
+
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
@@ -75,4 +89,3 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
-

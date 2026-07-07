@@ -1,21 +1,32 @@
 package com.example.nesa_drunk.ui.agenda
 
+import android.Manifest
 import android.app.AlarmManager
+import android.app.DatePickerDialog
 import android.app.PendingIntent
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nesa_drunk.database.AgendaItem
 import com.example.nesa_drunk.database.CatatanItem
 import com.example.nesa_drunk.database.VillageDatabase
 import com.example.nesa_drunk.databinding.FragmentAgendaBinding
 import com.example.nesa_drunk.receiver.AlarmReceiver
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -33,6 +44,15 @@ class AgendaFragment : Fragment() {
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var db: VillageDatabase
 
+    private val requestNotificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (!isGranted) {
+                context?.let {
+                    Toast.makeText(it, "Izin notifikasi ditolak. Pengingat tidak akan muncul.", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,62 +63,81 @@ class AgendaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         db = VillageDatabase.getInstance(requireContext())
+        
+        checkNotificationPermission()
 
-        // --- Setup Agenda RecyclerView ---
         agendaAdapter = AgendaAdapter(emptyList()) { agenda ->
-            scheduleReminderNotification(agenda)
+            autoScheduleAlarm(agenda) 
         }
-        binding.rvAgenda.layoutManager =
-            androidx.recyclerview.widget.LinearLayoutManager(requireContext())
+        binding.rvAgenda.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAgenda.adapter = agendaAdapter
 
-        // --- Setup Notes RecyclerView ---
         noteAdapter = NoteAdapter(emptyList()) { note ->
-            CoroutineScope(Dispatchers.IO).launch {
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                 db.deleteCatatan(note.id)
-                val updatedList = db.getAllCatatan()
-                withContext(Dispatchers.Main) {
-                    noteAdapter.updateData(updatedList)
-                    Toast.makeText(requireContext(), "Catatan dihapus", Toast.LENGTH_SHORT).show()
-                }
+                loadData()
             }
         }
-        binding.rvNotes.layoutManager =
-            androidx.recyclerview.widget.LinearLayoutManager(requireContext())
+        binding.rvNotes.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNotes.adapter = noteAdapter
 
         loadData()
 
-        // --- Save Note ---
-        binding.btnSaveNote.setOnClickListener {
-            val title = binding.etNoteTitle.text.toString().trim()
-            val content = binding.etNoteContent.text.toString().trim()
+        binding.etAgendaDate.setOnClickListener { showDatePicker() }
+        binding.etAgendaTime.setOnClickListener { showTimePicker() }
 
-            if (title.isEmpty() || content.isEmpty()) {
-                Toast.makeText(requireContext(), "Judul dan isi catatan tidak boleh kosong", Toast.LENGTH_SHORT).show()
+        binding.btnSaveAgenda.setOnClickListener {
+            val title = binding.etAgendaTitle.text.toString().trim()
+            val date = binding.etAgendaDate.text.toString().trim()
+            val time = binding.etAgendaTime.text.toString().trim()
+            val loc = binding.etAgendaLocation.text.toString().trim()
+
+            if (title.isEmpty() || date.isEmpty() || time.isEmpty() || loc.isEmpty()) {
+                Toast.makeText(requireContext(), "Harap isi semua data agenda", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val today = SimpleDateFormat("dd MMMM yyyy", Locale("id", "ID")).format(Date())
-            val newNote = CatatanItem(judul = title, isi = content, tanggal = today)
-
-            CoroutineScope(Dispatchers.IO).launch {
-                db.insertCatatan(newNote)
-                val updatedList = db.getAllCatatan()
+            val newAgenda = AgendaItem(kegiatan = title, tanggal = date, waktu = time, lokasi = loc)
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                val id = db.insertAgenda(newAgenda)
+                val agendaWithId = newAgenda.copy(id = id.toInt())
                 withContext(Dispatchers.Main) {
-                    binding.etNoteTitle.text?.clear()
-                    binding.etNoteContent.text?.clear()
-                    noteAdapter.updateData(updatedList)
-                    Toast.makeText(requireContext(), "Catatan berhasil disimpan!", Toast.LENGTH_SHORT).show()
+                    autoScheduleAlarm(agendaWithId)
+                    clearInput()
+                    loadData()
+                    Toast.makeText(requireContext(), "Agenda Disimpan. Pengingat aktif!", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        binding.btnSaveNote.setOnClickListener {
+            val title = binding.etNoteTitle.text.toString().trim()
+            val content = binding.etNoteContent.text.toString().trim()
+            if (title.isNotEmpty()) {
+                val today = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(Date())
+                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                    db.insertCatatan(CatatanItem(judul = title, isi = content, tanggal = today))
+                    loadData()
+                    withContext(Dispatchers.Main) {
+                        binding.etNoteTitle.text?.clear()
+                        binding.etNoteContent.text?.clear()
+                    }
                 }
             }
         }
     }
 
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+    }
+
     private fun loadData() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val agendas = db.getAllAgenda()
             val catatan = db.getAllCatatan()
             withContext(Dispatchers.Main) {
@@ -108,79 +147,75 @@ class AgendaFragment : Fragment() {
         }
     }
 
-    private fun scheduleReminderNotification(agenda: AgendaItem) {
+    private fun clearInput() {
+        binding.etAgendaTitle.text?.clear()
+        binding.etAgendaDate.text?.clear()
+        binding.etAgendaTime.text?.clear()
+        binding.etAgendaLocation.text?.clear()
+    }
+
+    private fun showDatePicker() {
+        val c = Calendar.getInstance()
+        DatePickerDialog(requireContext(), { _, y, m, d ->
+            binding.etAgendaDate.setText(String.format(Locale.getDefault(), "%04d-%02d-%02d", y, m + 1, d))
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show()
+    }
+
+    private fun showTimePicker() {
+        val c = Calendar.getInstance()
+        TimePickerDialog(requireContext(), { _, h, m ->
+            binding.etAgendaTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, m))
+        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show()
+    }
+
+    private fun autoScheduleAlarm(agenda: AgendaItem) {
         try {
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val timeSdf = SimpleDateFormat("HH:mm", Locale.getDefault())
-            val dateParsed = sdf.parse(agenda.tanggal) ?: Date()
-            val timeParsed = timeSdf.parse(agenda.waktu) ?: Date()
-
-            val cal = Calendar.getInstance()
-            cal.time = dateParsed
-
-            val timeCal = Calendar.getInstance()
-            timeCal.time = timeParsed
-
-            val hour = timeCal.get(Calendar.HOUR_OF_DAY)
-            val minute = timeCal.get(Calendar.MINUTE)
-
-            // Tampilkan TimePickerDialog agar pengguna bisa memilih jam pengingat secara kustom
-            val timePickerDialog = android.app.TimePickerDialog(
-                requireContext(),
-                { _, selectedHour, selectedMinute ->
-                    val targetCal = Calendar.getInstance()
-                    targetCal.time = dateParsed
-                    targetCal.set(Calendar.HOUR_OF_DAY, selectedHour)
-                    targetCal.set(Calendar.MINUTE, selectedMinute)
-                    targetCal.set(Calendar.SECOND, 0)
-
-                    val triggerTime = if (targetCal.timeInMillis < System.currentTimeMillis()) {
-                        // Jika waktu yang dipilih sudah terlewat, setel 5 detik lagi untuk kebutuhan testing
-                        System.currentTimeMillis() + 5000L
-                    } else {
-                        targetCal.timeInMillis
-                    }
-
-                    setAlarm(agenda, triggerTime)
-                },
-                hour,
-                minute,
-                true
-            )
-            timePickerDialog.setTitle("Atur Jam Pengingat (${agenda.kegiatan})")
-            timePickerDialog.show()
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+            val eventDate = sdf.parse("${agenda.tanggal} ${agenda.waktu}") ?: return
+            
+            val calendar = Calendar.getInstance()
+            calendar.time = eventDate
+            calendar.add(Calendar.MINUTE, -10)
+            
+            var triggerTime = calendar.timeInMillis
+            
+            if (triggerTime <= System.currentTimeMillis()) {
+                if (eventDate.time > System.currentTimeMillis()) {
+                    triggerTime = System.currentTimeMillis() + 5000 
+                } else {
+                    return 
+                }
+            }
+            setAlarm(agenda, triggerTime)
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Gagal memproses waktu: ${e.message}", Toast.LENGTH_SHORT).show()
+            Log.e("AgendaFragment", "Error scheduling: ${e.message}")
         }
     }
 
     private fun setAlarm(agenda: AgendaItem, triggerTime: Long) {
-        try {
-            val context = requireContext()
-            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val ctx = context ?: return
+        val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-            val intent = Intent(context, AlarmReceiver::class.java).apply {
-                putExtra("agenda_title", agenda.kegiatan)
-                putExtra("agenda_loc", agenda.lokasi)
-                putExtra("agenda_time", agenda.waktu)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (!alarmManager.canScheduleExactAlarms()) {
+                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:${ctx.packageName}"))
+                startActivity(intent)
+                return
             }
-
-            val requestCode = agenda.id
-            val pendingIntent = PendingIntent.getBroadcast(
-                context,
-                requestCode,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
-
-            val formattedTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(triggerTime))
-            val formattedDate = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(Date(triggerTime))
-            Toast.makeText(context, "⏰ Pengingat diatur untuk $formattedDate pukul $formattedTime WIB", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Gagal mengatur alarm: ${e.message}", Toast.LENGTH_SHORT).show()
         }
+
+        val intent = Intent(ctx, AlarmReceiver::class.java).apply {
+            putExtra("agenda_title", agenda.kegiatan)
+            putExtra("agenda_loc", agenda.lokasi)
+            putExtra("agenda_time", agenda.waktu)
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            ctx, agenda.id, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
     }
 
     override fun onDestroyView() {

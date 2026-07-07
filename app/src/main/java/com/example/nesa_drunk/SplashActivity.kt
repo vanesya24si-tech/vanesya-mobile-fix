@@ -6,16 +6,20 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.nesa_drunk.databinding.ActivitySplashBinding
 import com.example.nesa_drunk.ui.onboarding.OnboardingActivity
 import com.example.nesa_drunk.ui.auth.LoginActivity
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : ComponentActivity() {
     
     private lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Handle the splash screen transition
+        installSplashScreen()
+        
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -37,10 +41,8 @@ class SplashActivity : AppCompatActivity() {
         if (isFirstLaunch) {
             startActivity(Intent(this, OnboardingActivity::class.java))
         } else if (isLoggedIn) {
-            // Jika sudah login, ke Main (Home)
             startActivity(Intent(this, MainActivity::class.java))
         } else {
-            // Jika belum login, ke LoginActivity
             startActivity(Intent(this, LoginActivity::class.java))
         }
         

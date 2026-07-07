@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nesa_drunk.databinding.FragmentHomeBinding
+import com.example.nesa_drunk.ui.home.pertemuan_13.ThirteenthActivity
 import com.example.nesa_drunk.ui.pertemuan_9.NinthActivity
 
 class HomeFragment : Fragment() {
@@ -29,6 +30,11 @@ class HomeFragment : Fragment() {
 
         binding.btnPertemuan9.setOnClickListener {
             val intent = Intent(requireContext(), NinthActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPertemuan13.setOnClickListener {
+            val intent = Intent(requireContext(), ThirteenthActivity::class.java)
             startActivity(intent)
         }
 

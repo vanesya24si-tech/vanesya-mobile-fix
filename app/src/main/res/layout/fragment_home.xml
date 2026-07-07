@@ -145,17 +145,37 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Pertemuan 9 Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPertemuan9"
+            <!-- Pertemuan Buttons -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pertemuan 9"
-                android:layout_marginBottom="16dp"
-                app:cornerRadius="12dp"
-                app:icon="@android:drawable/ic_menu_today"
-                android:backgroundTint="@color/accent_lembaga"
-                android:textColor="@color/primary_dark"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPertemuan9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="P9"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_menu_today"
+                    android:backgroundTint="@color/accent_lembaga"
+                    android:textColor="@color/primary_dark"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPertemuan13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Pertemuan 13"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_menu_camera"
+                    android:backgroundTint="@color/accent_gold"
+                    android:textColor="@color/primary_dark"/>
+            </LinearLayout>
 
             <!-- Menu Utama Grid -->
             <TextView

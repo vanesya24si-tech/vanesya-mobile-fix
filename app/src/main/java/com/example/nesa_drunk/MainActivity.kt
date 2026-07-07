@@ -1,5 +1,6 @@
 package com.example.nesa_drunk
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -19,48 +20,39 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Load HomeFragment by default
-        if (savedInstanceState == null) {
-            replaceFragment(HomeFragment())
-        }
+        handleIntent(intent)
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> {
-                    replaceFragment(HomeFragment())
-                    true
-                }
-                R.id.nav_info -> {
-                    replaceFragment(InfoFragment())
-                    true
-                }
-                R.id.nav_news -> {
-                    replaceFragment(NewsFragment())
-                    true
-                }
-                R.id.nav_agenda -> {
-                    replaceFragment(AgendaFragment())
-                    true
-                }
-                R.id.nav_profile -> {
-                    replaceFragment(ProfileFragment())
-                    true
-                }
-                else -> false
+                R.id.nav_home -> replaceFragment(HomeFragment())
+                R.id.nav_info -> replaceFragment(InfoFragment())
+                R.id.nav_news -> replaceFragment(NewsFragment())
+                R.id.nav_agenda -> replaceFragment(AgendaFragment())
+                R.id.nav_profile -> replaceFragment(ProfileFragment())
             }
+            true
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
+    private fun handleIntent(intent: Intent?) {
+        val openFragment = intent?.getStringExtra("OPEN_FRAGMENT")
+        if (openFragment == "AGENDA") {
+            replaceFragment(AgendaFragment())
+            binding.bottomNavigation.selectedItemId = R.id.nav_agenda
+        } else if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
+            replaceFragment(HomeFragment())
         }
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(
-            android.R.anim.fade_in,
-            android.R.anim.fade_out,
-            android.R.anim.fade_in,
-            android.R.anim.fade_out
-        )
-        fragmentTransaction.replace(R.id.fragment_container, fragment)
-        fragmentTransaction.commit()
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }
