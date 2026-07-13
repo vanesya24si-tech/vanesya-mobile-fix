@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import com.example.nesa_drunk.databinding.FragmentHomeBinding
 import com.example.nesa_drunk.ui.home.pertemuan_13.ThirteenthActivity
 import com.example.nesa_drunk.ui.pertemuan_9.NinthActivity
+import com.example.nesa_drunk.ui.pertemuan_2.SecondActivity
+import com.example.nesa_drunk.ui.pertemuan_3.LoginActivity
+import com.example.nesa_drunk.ui.pertemuan_4.LoginActivity as LoginActivityP4
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +30,21 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnPertemuan2.setOnClickListener {
+            val intent = Intent(requireContext(), SecondActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPertemuan3.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPertemuan4.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivityP4::class.java)
+            startActivity(intent)
+        }
 
         binding.btnPertemuan9.setOnClickListener {
             val intent = Intent(requireContext(), NinthActivity::class.java)

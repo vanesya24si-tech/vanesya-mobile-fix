@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    PERTEMUAN 2 - Activity Layout
+    ==================================================
+    Materi yang dipelajari:
+    1. ConstraintLayout  : Layout utama yang digunakan di file ini. Setiap View
+                           diposisikan secara relatif satu sama lain menggunakan
+                           constraint (app:layout_constraint...). Ini lebih efisien
+                           dari LinearLayout bersarang karena flat hierarchy.
+    2. Package           : File Kotlin ini berada di package
+                           com.example.nesa_drunk.ui.pertemuan_2 (terlihat di
+                           baris pertama SecondActivity.kt)
+    3. View Binding      : Binding class ActivitySecondBinding di-generate otomatis
+                           dari file layout ini. Semua view dengan android:id dapat
+                           diakses via binding.namaId tanpa findViewById().
+    4. EditText          : Widget input teks untuk memasukkan nilai alas, tinggi, dll.
+    5. Button & onClick  : Menangani klik tombol hitung di Activity.
+    6. TextView          : Menampilkan hasil perhitungan rumus geometri.
+    ==================================================
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    tools:context=".ui.pertemuan_2.SecondActivity">
+
+    <!-- ===================================================
+         AppBarLayout + Toolbar
+         Materi: Toolbar adalah komponen Material Design yang
+         menggantikan ActionBar bawaan. setSupportActionBar()
+         dipanggil di Activity untuk menghubungkan keduanya.
+         =================================================== -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary_lembaga"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:title="Pertemuan 2 - Kalkulator Geometri"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- NestedScrollView agar konten bisa di-scroll -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
+
+            <!-- Header Banner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/primary_lembaga"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📐 Kalkulator Geometri"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bangun Datar &amp; Bangun Ruang"
+                    android:textColor="#D1D9FF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp">
+
+                <!-- ===================================================
+                     SECTION 1: BANGUN DATAR - LUAS SEGITIGA
+                     Rumus: L = 1/2 × alas × tinggi
+                     ================================================= -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📌 Bangun Datar"
+                    android:textColor="@color/text_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <!--
+                    CARD LUAS SEGITIGA
+                    Menggunakan ConstraintLayout di dalam CardView.
+                    Setiap widget di-constraint ke widget lain (bukan hanya parent).
+                    Ini adalah inti dari materi ConstraintLayout di Pertemuan 2.
+                -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    android:layout_marginBottom="20dp">
+
+                    <!-- ConstraintLayout sebagai container utama form -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp">
+
+                        <!-- Judul Rumus -->
+                        <TextView
+                            android:id="@+id/tvTitleSegitiga"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="🔺 Luas Segitiga"
+                            android:textColor="@color/primary_lembaga"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <!-- Rumus -->
+                        <TextView
+                            android:id="@+id/tvRumusSegitiga"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="#EEF2FF"
+                            android:padding="8dp"
+                            android:text="Rumus: L = ½ × Alas × Tinggi"
+                            android:textColor="@color/primary_lembaga"
+                            android:textSize="13sp"
+                            android:fontFamily="monospace"
+                            app:layout_constraintTop_toBottomOf="@id/tvTitleSegitiga"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <!-- Label Alas -->
+                        <TextView
+                            android:id="@+id/tvLabelAlas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Alas (cm)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"
+                            app:layout_constraintTop_toBottomOf="@id/tvRumusSegitiga"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <!--
+                            EditText Alas
+                            inputType="numberDecimal" membatasi input hanya angka.
+                            Dipelajari juga di Logcat: ketika inputan kosong,
+                            akan muncul log error di Logcat.
+                        -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilAlas"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:hint="Masukkan panjang alas"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:layout_constraintTop_toBottomOf="@id/tvLabelAlas"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etAlas"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                android:imeOptions="actionNext" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Label Tinggi -->
+                        <TextView
+                            android:id="@+id/tvLabelTinggi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Tinggi (cm)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"
+                            app:layout_constraintTop_toBottomOf="@id/tilAlas"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <!-- EditText Tinggi -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilTinggi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:hint="Masukkan tinggi segitiga"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:layout_constraintTop_toBottomOf="@id/tvLabelTinggi"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etTinggi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                android:imeOptions="actionDone" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--
+                            Button Hitung Segitiga
+                            setOnClickListener dipelajari di Activity.
+                            Emulator digunakan untuk menguji klik tombol ini.
+                        -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnHitungSegitiga"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="@color/primary_lembaga"
+                            android:text="🧮 Hitung Luas Segitiga"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_edit"
+                            app:iconTint="@color/white"
+                            app:layout_constraintTop_toBottomOf="@id/tilTinggi"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <!--
+                            TextView Hasil Segitiga
+                            Menampilkan hasil perhitungan dari Activity.
+                            Visibility diatur secara programatik (View.VISIBLE / GONE).
+                        -->
+                        <TextView
+                            android:id="@+id/tvHasilSegitiga"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:background="#E8F5E9"
+                            android:padding="16dp"
+                            android:text="Hasil akan tampil di sini"
+                            android:textColor="#1B5E20"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@id/btnHitungSegitiga"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ===================================================
+                     SECTION 2: BANGUN RUANG - VOLUME BALOK
+                     Rumus: V = Panjang × Lebar × Tinggi
+                     ================================================= -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📦 Bangun Ruang"
+                    android:textColor="@color/text_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- CARD VOLUME BALOK -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    android:layout_marginBottom="20dp">
+
+                    <!--
+                        ConstraintLayout untuk form Volume Balok.
+                        Menggunakan chain vertikal dengan 3 input field.
+                        Setiap field di-constraint ke field di atasnya.
+                    -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp">
+
+                        <!-- Judul -->
+                        <TextView
+                            android:id="@+id/tvTitleBalok"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="📦 Volume Balok"
+                            android:textColor="@color/primary_lembaga"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <!-- Rumus -->
+                        <TextView
+                            android:id="@+id/tvRumusBalok"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="#EEF2FF"
+                            android:padding="8dp"
+                            android:text="Rumus: V = Panjang × Lebar × Tinggi"
+                            android:textColor="@color/primary_lembaga"
+                            android:textSize="13sp"
+                            android:fontFamily="monospace"
+                            app:layout_constraintTop_toBottomOf="@id/tvTitleBalok"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <!-- Label Panjang -->
+                        <TextView
+                            android:id="@+id/tvLabelPanjang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Panjang (cm)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"
+                            app:layout_constraintTop_toBottomOf="@id/tvRumusBalok"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <!-- EditText Panjang -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilPanjang"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:hint="Masukkan panjang balok"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:layout_constraintTop_toBottomOf="@id/tvLabelPanjang"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etPanjang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                android:imeOptions="actionNext" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Label Lebar -->
+                        <TextView
+                            android:id="@+id/tvLabelLebar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Lebar (cm)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"
+                            app:layout_constraintTop_toBottomOf="@id/tilPanjang"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <!-- EditText Lebar -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilLebar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:hint="Masukkan lebar balok"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:layout_constraintTop_toBottomOf="@id/tvLabelLebar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etLebar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                android:imeOptions="actionNext" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Label Tinggi Balok -->
+                        <TextView
+                            android:id="@+id/tvLabelTinggiBalok"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Tinggi (cm)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"
+                            app:layout_constraintTop_toBottomOf="@id/tilLebar"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <!-- EditText Tinggi Balok -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilTinggiBalok"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:hint="Masukkan tinggi balok"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:layout_constraintTop_toBottomOf="@id/tvLabelTinggiBalok"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etTinggiBalok"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                android:imeOptions="actionDone" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Button Hitung Balok -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnHitungBalok"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="@color/accent_lembaga"
+                            android:text="🧮 Hitung Volume Balok"
+                            android:textColor="@color/primary_dark"
+                            android:textStyle="bold"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_edit"
+                            app:iconTint="@color/primary_dark"
+                            app:layout_constraintTop_toBottomOf="@id/tilTinggiBalok"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <!-- TextView Hasil Balok -->
+                        <TextView
+                            android:id="@+id/tvHasilBalok"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:background="#FFF8E1"
+                            android:padding="16dp"
+                            android:text="Hasil akan tampil di sini"
+                            android:textColor="#E65100"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@id/btnHitungBalok"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ===================================================
+                     INFO CARD - Penjelasan Materi Praktikum
+                     ================================================= -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginBottom="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@color/primary_lembaga"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📚 Materi Praktikum"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="12dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✅ Activity &amp; Lifecycle"
+                            android:textColor="#D1D9FF"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✅ ConstraintLayout (layout utama halaman ini)"
+                            android:textColor="#D1D9FF"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✅ Package: com.example.nesa_drunk.ui.pertemuan_2"
+                            android:textColor="#D1D9FF"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✅ Logcat: Lihat log di Android Studio"
+                            android:textColor="#D1D9FF"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✅ Emulator: Uji aplikasi tanpa perangkat fisik"
+                            android:textColor="#D1D9FF"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✅ View Binding: Akses view tanpa findViewById()"
+                            android:textColor="#D1D9FF"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

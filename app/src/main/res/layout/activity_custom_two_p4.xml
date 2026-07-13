@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    tools:context=".ui.pertemuan_4.CustomScreenTwoActivity">
+
+    <!-- AppBar & Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary_lembaga"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:title="Galeri Wisata Desa"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Card showing Passed Data -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/primary_lembaga"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/tvPassedTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Judul Halaman"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvPassedDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deskripsi halaman yang diteruskan dari intent"
+                        android:textColor="#D1D9FF"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginTop="6dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- GALLERY CONTENT CARD -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:src="@drawable/logo_desa"
+                        android:scaleType="centerInside"
+                        android:layout_marginBottom="16dp"
+                        android:tintMode="multiply" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Destinasi Agrowisata Ungkulan"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agrowisata perkebunan buah organik dan peternakan ramah lingkungan menjadi andalan kunjungan wisata di Desa Rumbai. Pengunjung dapat memetik buah langsung dari pohonnya serta mendapatkan edukasi agroteknologi modern."
+                        android:textColor="@color/text_dark"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/poppins"
+                        android:lineSpacingMultiplier="1.2"
+                        android:layout_marginBottom="16dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/bg_light"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Festival Kebudayaan Tahunan"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Setiap bulan Agustus, Desa Rumbai menyelenggarakan pertunjukan seni lokal, parade budaya, serta bazar kuliner khas yang dihadiri oleh ratusan wisatawan lokal."
+                        android:textColor="@color/text_dark"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/poppins"
+                        android:lineSpacingMultiplier="1.2" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

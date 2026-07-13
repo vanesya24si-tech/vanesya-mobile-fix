@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    android:id="@+id/coordinatorLayout"
+    tools:context=".ui.pertemuan_4.DashboardActivity">
+
+    <!-- AppBar & Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary_lembaga"
+            app:title="Dashboard Utama - P4"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
+
+            <!-- Banner Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="@color/primary_lembaga"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:id="@+id/tvWelcomeUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Halo, Selamat Datang!"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/poppins"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Portal Manajemen Layanan &amp; Perhitungan - Pertemuan 4"
+                    android:textColor="#D1D9FF"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/poppins"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Cards Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:layout_marginTop="-40dp">
+
+                <!-- CARD 1: BANGUN RUANG -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/tvTitleCard1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📦 Rumus Bangun Ruang"
+                            android:textColor="@color/primary_lembaga"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvDescCard1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kalkulator khusus untuk menghitung Volume Balok secara presisi dengan input panjang, lebar, dan tinggi."
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnBangunRuang"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="Buka Rumus Bangun Ruang"
+                            android:backgroundTint="@color/primary_lembaga"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_agenda" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- CARD 2: CUSTOM SCREEN 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/tvTitleCard2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🏢 Layanan &amp; Profil Desa Rumbai"
+                            android:textColor="@color/primary_lembaga"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvDescCard2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Menampilkan rincian sejarah, visi misi, dan jajaran perangkat desa Rumbai secara digital."
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCustomOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="Buka Profil Desa"
+                            android:backgroundTint="@color/accent_lembaga"
+                            android:textColor="@color/primary_dark"
+                            app:iconTint="@color/primary_dark"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_myplaces" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- CARD 3: CUSTOM SCREEN 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/tvTitleCard3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📸 Galeri Wisata Desa"
+                            android:textColor="@color/primary_lembaga"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvDescCard3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Temukan keindahan alam desa Rumbai, destinasi agrowisata, dan festival budaya tahunan."
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCustomTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="Lihat Galeri Desa"
+                            android:backgroundTint="@color/accent_gold"
+                            android:textColor="@color/primary_dark"
+                            app:iconTint="@color/primary_dark"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_gallery" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- LOGOUT BUTTON -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogout"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:backgroundTint="#FFEBEE"
+                    android:text="🚪 KELUAR APLIKASI (LOGOUT)"
+                    android:textColor="#C62828"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

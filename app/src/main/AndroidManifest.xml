@@ -64,6 +64,54 @@
             android:label="Pertemuan 13"
             android:theme="@style/Theme.Nesadrunk" />
 
+        <activity
+            android:name=".ui.pertemuan_2.SecondActivity"
+            android:exported="false"
+            android:label="Pertemuan 2"
+            android:theme="@style/Theme.Nesadrunk" />
+
+        <activity
+            android:name=".ui.pertemuan_3.LoginActivity"
+            android:exported="false"
+            android:label="Pertemuan 3 - Login"
+            android:theme="@style/Theme.Nesadrunk" />
+
+        <activity
+            android:name=".ui.pertemuan_3.WelcomeActivity"
+            android:exported="false"
+            android:label="Pertemuan 3 - Welcome"
+            android:theme="@style/Theme.Nesadrunk" />
+
+        <activity
+            android:name=".ui.pertemuan_4.LoginActivity"
+            android:exported="false"
+            android:label="Pertemuan 4 - Login"
+            android:theme="@style/Theme.Nesadrunk" />
+
+        <activity
+            android:name=".ui.pertemuan_4.DashboardActivity"
+            android:exported="false"
+            android:label="Pertemuan 4 - Dashboard"
+            android:theme="@style/Theme.Nesadrunk" />
+
+        <activity
+            android:name=".ui.pertemuan_4.SpaceFormulaActivity"
+            android:exported="false"
+            android:label="Pertemuan 4 - Hitung Bangun Ruang"
+            android:theme="@style/Theme.Nesadrunk" />
+
+        <activity
+            android:name=".ui.pertemuan_4.CustomScreenOneActivity"
+            android:exported="false"
+            android:label="Pertemuan 4 - Profil Desa"
+            android:theme="@style/Theme.Nesadrunk" />
+
+        <activity
+            android:name=".ui.pertemuan_4.CustomScreenTwoActivity"
+            android:exported="false"
+            android:label="Pertemuan 4 - Galeri Desa"
+            android:theme="@style/Theme.Nesadrunk" />
+
         <receiver
             android:name=".receiver.AlarmReceiver"
             android:enabled="true"

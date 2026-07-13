@@ -153,28 +153,69 @@
                 android:layout_marginBottom="16dp">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPertemuan2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="2dp"
+                    android:text="P2"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_menu_compass"
+                    android:backgroundTint="@color/primary_blue"
+                    android:textColor="@color/white"
+                    app:iconTint="@color/white"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPertemuan3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="2dp"
+                    android:text="P3"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_lock_power_off"
+                    android:backgroundTint="#FF5722"
+                    android:textColor="@color/white"
+                    app:iconTint="@color/white"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPertemuan4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="2dp"
+                    android:text="P4"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_menu_agenda"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="@color/white"
+                    app:iconTint="@color/white"/>
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPertemuan9"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginHorizontal="2dp"
                     android:text="P9"
                     app:cornerRadius="12dp"
                     app:icon="@android:drawable/ic_menu_today"
                     android:backgroundTint="@color/accent_lembaga"
-                    android:textColor="@color/primary_dark"/>
+                    android:textColor="@color/primary_dark"
+                    app:iconTint="@color/primary_dark"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPertemuan13"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    android:text="Pertemuan 13"
+                    android:layout_marginStart="2dp"
+                    android:text="P13"
                     app:cornerRadius="12dp"
                     app:icon="@android:drawable/ic_menu_camera"
                     android:backgroundTint="@color/accent_gold"
-                    android:textColor="@color/primary_dark"/>
+                    android:textColor="@color/primary_dark"
+                    app:iconTint="@color/primary_dark"/>
             </LinearLayout>
 
             <!-- Menu Utama Grid -->
